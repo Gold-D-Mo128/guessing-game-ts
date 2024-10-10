@@ -1,5 +1,5 @@
 // app/chat/page.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Title from "./title"; // Update the import based on your actual structure
 
@@ -11,7 +11,7 @@ interface Message {
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-  const ws = new WebSocket("ws://localhost:4000"); // Update the URL based on your WebSocket server
+  const ws = useMemo(() => new WebSocket("ws://localhost:3000"), []);
 
   useEffect(() => {
     ws.onmessage = (event) => {

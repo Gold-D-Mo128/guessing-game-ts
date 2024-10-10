@@ -10,7 +10,8 @@ interface CounterProps {
   decrease: () => void;
   title: string;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  [key: string]: any; // For ...rest props
+
+  tailwind: string;
 }
 
 /**
@@ -48,8 +49,8 @@ export default function Counter({
   increase,
   decrease,
   title,
+
   handleInputChange,
-  ...rest
 }: CounterProps) {
   return (
     <div className="bg-gradient-to-r from-[#171b23] to-[#242b3a] text-center text-white rounded-lg items-center justify-between px-2 py-1 grow border border-[#242a38]">
@@ -72,7 +73,6 @@ export default function Counter({
             min="0"
             max="10"
             step="0.01"
-            {...rest}
           />
         </div>
         <button

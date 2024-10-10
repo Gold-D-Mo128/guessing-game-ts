@@ -172,7 +172,7 @@ const useStore = create<GameStore>((set) => ({
   endGame: () => set({ end: true }),
 
   setGameState: (started, end) =>
-    set((state) => ({
+    set(() => ({
       started,
       end,
       onGoing: started && !end,

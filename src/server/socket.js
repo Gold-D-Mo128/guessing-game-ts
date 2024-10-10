@@ -1,27 +1,34 @@
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-const next = require("next");
+// app/socket.ts
+import { WebSocketServer } from "ws";
+import http from "http";
 
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+// Create an HTTP server
+const server = http.createServer();
+const wss = new WebSocketServer({ server });
 
-app.prepare().then(() => {
-  const server = createServer((req, res) => {
-    handle(req, res);
-  });
+// Handle WebSocket connections
+wss.on("connection", (ws) => {
+  console.log("A user connected");
 
-  const io = new Server(server);
+  // Handle incoming messages
+  ws.on("message", (message) => {
+    console.log("Received:", message);
 
-  io.on("connection", (socket) => {
-    console.log("New client connected");
-    socket.on("disconnect", () => {
-      console.log("Client disconnected");
+    // Broadcast the message to all connected clients
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
     });
   });
 
-  server.listen(3000, (err) => {
-    if (err) throw err;
-    console.log("Server running on http://localhost:3000");
+  // Handle disconnection
+  ws.on("close", () => {
+    console.log("User disconnected");
   });
+});
+
+// Start the server
+server.listen(3000, () => {
+  console.log("WebSocket server running on port 3000");
 });

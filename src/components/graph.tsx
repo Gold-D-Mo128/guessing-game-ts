@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Text,
-} from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis } from "recharts";
 
 /**
  * Graph Component
@@ -57,7 +50,6 @@ interface GraphProps {
   speed: number;
   started: boolean;
   end: boolean;
-  startGame: () => void;
   endGame: () => void;
 }
 
@@ -72,12 +64,10 @@ export default function Graph({
   speed,
   started,
   end,
-  startGame,
   endGame,
 }: GraphProps) {
   const [visibleData, setVisibleData] = useState<DataPoint[]>([]);
   const [counter, setCounter] = useState<number>(0);
-  const [randomNumber, setRandomNumber] = useState<number | null>(null);
 
   const generateData = useCallback((stoppedAt: number): DataPoint[] => {
     const newData: DataPoint[] = [];
@@ -102,7 +92,7 @@ export default function Graph({
   useEffect(() => {
     if (started && !end) {
       const newRandomNumber = parseFloat((Math.random() * 9 + 1).toFixed(2));
-      setRandomNumber(newRandomNumber);
+
       setStoppedAt(newRandomNumber);
 
       const newData = generateData(newRandomNumber);
@@ -125,7 +115,6 @@ export default function Graph({
     } else if (!started) {
       setVisibleData([]);
       setCounter(0);
-      setRandomNumber(null);
     }
   }, [started, end, speed, setStoppedAt, endGame, generateData]);
 
@@ -135,7 +124,6 @@ export default function Graph({
         {counter.toFixed(2)}x
       </span>
       <ResponsiveContainer className="relative w-full" height={410}>
-        {/* <div className="relative w-full h-full"> */}
         <LineChart data={visibleData}>
           <XAxis
             dataKey="name"
@@ -153,7 +141,6 @@ export default function Graph({
             isAnimationActive={false}
           />
         </LineChart>
-        {/* </div> */}
       </ResponsiveContainer>
     </div>
   );

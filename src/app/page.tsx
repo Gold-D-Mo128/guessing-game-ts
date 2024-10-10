@@ -175,12 +175,11 @@ export default function Home() {
               info={auth ? getCurrentTime() : ""} // Return empty string if auth is false
             />
             <Graph
-              className="w-[100%] p-6 bg-[#242a39] rounded-lg grow h-fit relative"
+              className="w-[100%] p-6 bg-[#242a39] rounded-lg grow  relative"
               setStoppedAt={setStoppedAt}
               speed={speed}
               started={started}
               end={end || false}
-              startGame={startGame}
               endGame={endGame}
             />
           </div>

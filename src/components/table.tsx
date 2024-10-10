@@ -3,9 +3,7 @@ import Title from "./title";
 
 interface TableProps {
   heads: string[];
-  data?: any[]; // This prop is not used in the component, but included for completeness
   children: ReactNode;
-  tailwind?: string; // This prop is not used in the component, but included for completeness
   title: string;
   icon?: ReactNode;
 }
@@ -20,9 +18,7 @@ interface TableProps {
  *
  * Props:
  * - heads (array): An array of strings representing the column headers for the table.
- * - data (array): An array of data objects to be displayed in the table (not used directly here).
  * - children (ReactNode): The rows of the table, passed as child components.
- * - tailwind (string): Additional Tailwind CSS classes for further styling (not used directly here).
  * - title (string): The title of the table displayed at the top.
  * - icon (ReactNode): An optional icon to be displayed alongside the title.
  *

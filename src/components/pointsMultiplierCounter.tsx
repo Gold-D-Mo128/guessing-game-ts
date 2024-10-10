@@ -72,7 +72,7 @@ const PointsMultiplierCounter: React.FC<PointsMultiplierCounterProps> = ({
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let inputValue = e.target.value;
+    const inputValue = e.target.value;
     if (inputValue === "") {
       setValue(inputValue);
       return;
@@ -105,8 +105,7 @@ const PointsMultiplierCounter: React.FC<PointsMultiplierCounterProps> = ({
       increase={handleIncrease}
       decrease={handleDecrease}
       points={value}
-      tailwind="w-[45%] "
-      onClick={() => setValue("")}
+      tailwind="w-[45%]"
       handleInputChange={handleInputChange}
     />
   );

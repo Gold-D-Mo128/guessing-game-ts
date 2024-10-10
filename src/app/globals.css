@@ -50,13 +50,13 @@ html {
   border: 0.5px solid rgba(255, 255, 255, 0.589);
 }
 .sliderInput::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 6px rgba(0, 128, 0, 0.4);
+  box-shadow: 0px 0px 7px #f1566b;
 }
 .sliderInput::-moz-range-thumb:hover {
-  box-shadow: 0 0 0 6px rgba(0, 128, 0, 0.4);
+  box-shadow: 0px 0px 7px #f1566b;
 }
 .sliderInput::-ms-thumb:hover {
-  box-shadow: 0 0 0 6px rgba(0, 128, 0, 0.4);
+  box-shadow: 0px 0px 7px #f1566b;
 }
 .sliderInput:disabled::-webkit-slider-thumb {
   background: #a0a0a0;

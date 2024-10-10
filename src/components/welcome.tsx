@@ -34,13 +34,12 @@ import React, { useState, ChangeEvent } from "react";
  */
 
 interface StoreState {
-  player: string;
   setPlayer: (name: string) => void;
   setAuth: (auth: boolean) => void;
 }
 
 export default function Welcome(): JSX.Element {
-  const { player, setPlayer, setAuth } = useStore() as StoreState;
+  const { setPlayer, setAuth } = useStore() as StoreState;
   const [value, setValue] = useState<string>("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
